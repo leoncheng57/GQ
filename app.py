@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "<h1>Index</h1>"
+    return render_template("index.html")
 
 @app.route("/search", methods=["GET","POST"])
 @app.route("/search/", methods=["GET","POST"])
@@ -23,7 +23,8 @@ def gSearch():
         soup = bs4.BeautifulSoup(page,'lxml')
         raw = soup.get_text()
     
-        text = re.sub("[ \t\n]+"," ", raw)
+        #text = re.sub("[ \t\n]+"," ", raw)
+        text = raw
         #print text
         return render_template("results.html",result=text)
 
