@@ -13,6 +13,7 @@ def gSearch():
     if request.method == "GET":
         return render_template("search.html")
     else:
+        q = request.form['search']
         results = google.search(q, num=10,start=0,stop=10)
         rlist = []
         for r in results:
