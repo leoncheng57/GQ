@@ -25,7 +25,7 @@ def gSearch():
     
         text = re.sub("[ \t\n]+"," ", raw)
         #print text
-        return render_template("results.html",result=test)
+        return render_template("results.html",result=text)
 
 if __name__ == '__main__':
     app.debug = True
