@@ -3,7 +3,16 @@
 
 <head>
   <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="../static/style.css">
 </head>
+
+<nav>
+  <ul>
+    <b class="bar">GQ</b>
+    <li class="bar"><a href="/">Home</a></li>
+    <li class="bar"><a href="/Search">Search</a></li>
+  </ul>
+</nav>
 
 <body>
   {% block contents %}{% endblock %}
