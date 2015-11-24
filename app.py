@@ -6,6 +6,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     q = request.args.get('search')
+    text = None
     if q:
         url = google.search(q, num=1, stop=1).next()
         page = google.get_page(url)
