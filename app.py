@@ -5,28 +5,15 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template("index.html")
-
-@app.route("/search", methods=["GET","POST"])
-@app.route("/search/", methods=["GET","POST"])
-def gSearch():
-    if request.method == "GET":
-        return render_template("search.html")
-    else:
-        q = request.form['search']
-        results = google.search(q, num=10,start=0,stop=10)
-        rlist = []
-        for r in results:
-            rlist.append(r)
-        url = urllib2.urlopen(rlist[0])
-        page = url.read()
-        soup = bs4.BeautifulSoup(page,'lxml')
-        raw = soup.get_text()
-    
-        #text = re.sub("[ \t\n]+"," ", raw)
-        text = raw
-        #print text
-        return render_template("results.html",result=text)
+    q = request.args.get('search')
+    if q:
+        url = google.search(q, num=1, stop=1).next()
+        page = google.get_page(url)
+        soup = bs4.BeautifulSoup(page, 'lxml')
+        for elem in soup(['script', 'style']):
+            elem.extract()
+        text = soup.get_text(' ', strip=True)
+    return render_template("index.html", text=text)
 
 if __name__ == '__main__':
     app.debug = True
