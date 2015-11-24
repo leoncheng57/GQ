@@ -4,6 +4,7 @@
 
 
 {% block contents %}
+<center>
 <h1>GQ RegEx Search Engine</h1>
 <form>
   <input type="text" name="search" {% if text %}value="{{ request.args.get('search') }}"{% endif %} autofocus>
@@ -15,3 +16,4 @@
 {% endif %}
 {% endblock %}
 
+</center>
