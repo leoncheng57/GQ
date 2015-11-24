@@ -1,20 +1,19 @@
 {% extends "base.html" %}
   
 {% block title %}
- <title>GQ RESE</title>
+<title>GQ RESE</title>
 {% endblock %}
 
 
-<body>
-  <h1>GQ RegEx Search Engine</h1>
-  <form>
-    <input type="text" name="search" {% if text %}value="{{ request.args.get('search') }}"{% endif %} autofocus>
-    <input type="submit">
-  </form>
-  {% if text %}
-  <h3>{{ request.args.get('search') }}</h3>
-  {{ text }}
-  {% endif %}
-</body>
+{% block contents %}
+<h1>GQ RegEx Search Engine</h1>
+<form>
+  <input type="text" name="search" {% if text %}value="{{ request.args.get('search') }}"{% endif %} autofocus>
+  <input type="submit">
+</form>
+{% if text %}
+<h3>{{ request.args.get('search') }}</h3>
+{{ text }}
+{% endif %}
+{% endblock %}
 
-</html>
