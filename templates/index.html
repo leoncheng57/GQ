@@ -7,12 +7,11 @@
   
 <body>
   <h1>GQ RegEx Search Engine</h1>
-  {% if not text %}
   <form>
-    <input type="text" name="search" autofocus>
+    <input type="text" name="search" {% if text %}value="{{ request.args.get('search') }}"{% endif %} autofocus>
     <input type="submit">
   </form>
-  {% else %}
+  {% if text %}
   <h3>{{ request.args.get('search') }}</h3>
   {{ text }}
   {% endif %}
