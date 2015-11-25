@@ -8,7 +8,8 @@
 <h1><font style="impact" color="#00bfff">GQ RegEx</font><font style="impact" color="#00ffc0"> Search Engine</font></h1>
 <form>
   <input type="text" name="search" {% if text %}value="{{ request.args.get('search') }}"{% endif %} autofocus>
-  <input type="submit">
+  <br>
+  <input type="submit">Search!</input>
 </form>
 {% if text %}
 <h3>{{ request.args.get('search') }}</h3>
