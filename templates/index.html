@@ -9,7 +9,7 @@
 <form>
   <input type="text" name="search" {% if text %}value="{{ request.args.get('search') }}"{% endif %} autofocus>
   <br>
-  <input type="submit">Search!</input>
+  <input type="submit">
 </form>
 {% if text %}
 <h3>{{ request.args.get('search') }}</h3>
