@@ -4,7 +4,12 @@ import os.path, google, urllib2, bs4, re
 app = Flask(__name__)
 
 @app.route('/')
-def index():
+def home():
+    return render_template("home.html")
+
+@app.route('/search', methods=["GET","POST"])
+@app.route('/search/', methods=["GET","POST"])
+def search():
     q = request.args.get('search')
     text = None
     if q:
