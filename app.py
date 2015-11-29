@@ -22,15 +22,15 @@ def search():
     search_list = search.split()
     for i in search_list:
         if i.lower() == 'who':
-            qtype = who
+            qtype = 'who'
         else if i.lower() == 'what':
-            qtype = what
+            qtype = 'what'
         else if i.lower() == 'when':
-            qtype = when
+            qtype = 'when'
         else if i.lower() == 'where':
-            qtype = where
+            qtype = 'where
         else
-            qtype = why
+            qtype = 'why'
     return render_template("index.html", text=text)
 
 if __name__ == '__main__':
