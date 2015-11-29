@@ -24,7 +24,7 @@ def get_text(search, n):
 #To test each functions
 if __name__=='__main__':      
     input = raw_input("Enter stuff: ")                                    
-    text = get_text(input)
+    text = get_text(input,1)
     for i in text:
         print i
 
