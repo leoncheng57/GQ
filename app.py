@@ -13,7 +13,7 @@ def search():
     q = request.args.get('search')
     text = None
     if q:
-        url = google.search(q, num=5, stop=1).next()
+        url = google.search(q, num = 5, start = 0, stop = 5).next()
         page = google.get_page(url)
         soup = bs4.BeautifulSoup(page, 'lxml')
         for elem in soup(['script', 'style']):
