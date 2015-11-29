@@ -16,8 +16,8 @@ def search():
         url = google.search(q, num=1, stop=1).next()
         page = google.get_page(url)
         soup = bs4.BeautifulSoup(page, 'lxml')
-        for elem in soup(['script', 'style']):
-            elem.extract()
+        #for elem in soup(['script', 'style']):
+        #    elem.extract()
         text = soup.get_text(' ', strip=True)
     return render_template("index.html", text=text)
 
