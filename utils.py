@@ -12,7 +12,7 @@ def get_text(search, n):
             r = urllib2.Request(url)
             u = urllib2.urlopen(r)
             page = u.read()
-            soup = bs4.BeautifulSoup(page,'html')
+            soup = bs4.BeautifulSoup(page, "html.parser")
             raw = soup.get_text()
             
             reg = re.sub("[\t\n ]"," ",raw)
