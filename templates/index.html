@@ -1,20 +1,22 @@
 {% extends "base.html" %}
   
+
 {% block title %}GQ RESE{% endblock %}
 
 
 {% block contents %}
-<center>
-<h1><font style="impact" color="#00bfff">GQ RegEx</font><font style="impact" color="#00ffc0"> Search Engine</font></h1>
+
+<h1>GQ RegEx Search Engine</h1>
+<p><em>We do WHO questions.</em></p>
 <form>
-  <input type="text" name="search" {% if text %}value="{{ request.args.get('search') }}"{% endif %} autofocus>
-  <br>
-  <input type="submit">
+  <input type="text" name="search" {% if text %}value="{{ request.args.get('search').strip() }}"{% endif %} autofocus />
+  <input type="submit" />
 </form>
+
 {% if text %}
-<h3>{{ request.args.get('search') }}</h3>
+<h3>{{ request.args.get('search').strip() }}</h3>
+{% if message %}<h4>{{ message|safe }}</h4>{% endif %}
 {{ text }}
 {% endif %}
-{% endblock %}
 
-</center>
+{% endblock %}
