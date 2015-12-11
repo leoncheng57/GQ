@@ -12,17 +12,20 @@ def home():
 @app.route('/search/', methods=["GET","POST"])
 def search():
     q = request.args.get('search')
+    p = request.args.get('pages')
     text = None
     message = None
-    error = False
     if q:
         q = q.strip()
-        url = google.search(q, num = 5, start = 0, stop = 5).next()
-        page = google.get_page(url)
-        soup = bs4.BeautifulSoup(page)
-        for elem in soup(['script', 'style']):
-            elem.extract()
-        text = soup.get_text(' ', strip=True)
+        p = int(p) if p else 1
+        text = ''
+        for n in range(p):
+            url = google.search(q, num = 5, start = 0, stop = 5, pause=2.0).next()
+            page = google.get_page(url)
+            soup = bs4.BeautifulSoup(page)
+            for elem in soup(['script', 'style']):
+                elem.extract()
+            text += soup.get_text(' ', strip=True)
         if re.match('[Ww][Hh][Oo]', q):
             message = "Identified this as a WHO question!"
             if re.search('([Ii][Ss]|[Ww][Aa][Ss])\s\w+\s\w+', q):
