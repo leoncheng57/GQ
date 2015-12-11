@@ -11,11 +11,12 @@ def home():
 @app.route('/search', methods=["GET","POST"])
 @app.route('/search/', methods=["GET","POST"])
 def search():
-    q = request.args.get('search').strip()
+    q = request.args.get('search')
     text = None
     message = None
     error = False
     if q:
+        q = q.strip()
         url = google.search(q, num = 5, start = 0, stop = 5).next()
         page = google.get_page(url)
         soup = bs4.BeautifulSoup(page)
@@ -27,7 +28,7 @@ def search():
             if re.search('([Ii][Ss]|[Ww][Aa][Ss])\s[A-Z][a-z]+\s[A-Z][a-z]+', q):
                 message += "<br>Determined that you're looking for information about " + re.search('[A-Z][a-z]+\s[A-Z][a-z]+', q).group(0) + "..."
             else:
-                message += "<br>Giving you information about the person who \"" + re.match('.*(?=\?)', re.search('(?<=[Ww][Hh][Oo][\s]).*', q).group(0)).group(0) + "\""
+                message += "<br>Giving you information about the person who \"" + re.match('.*(?=\?)|.*', re.search('(?<=[Ww][Hh][Oo][\s]).*', q).group(0)).group(0) + "\""
                 text = questions.get_names(text)
         else:
             message = "<span style=\"color:red;\">Sorry, we don't recognize this question.<br>\
