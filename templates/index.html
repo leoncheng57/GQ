@@ -16,7 +16,11 @@
 {% if text %}
 <h3>{{ request.args.get('search').strip() }}</h3>
 {% if message %}<h4>{{ message|safe }}</h4>{% endif %}
-{{ text }}
+<ul>
+  {% for item in text %}
+  <li>{{ item[1] }} <b>({{ item[0] }} matches)</b></li>
+  {% endfor %}
+</ul>
 {% endif %}
 
 {% endblock %}
