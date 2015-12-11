@@ -25,8 +25,8 @@ def search():
         text = soup.get_text(' ', strip=True)
         if re.match('[Ww][Hh][Oo]', q):
             message = "Identified this as a WHO question!"
-            if re.search('([Ii][Ss]|[Ww][Aa][Ss])\s[A-Z][a-z]+\s[A-Z][a-z]+', q):
-                message += "<br>Determined that you're looking for information about " + re.search('[A-Z][a-z]+\s[A-Z][a-z]+', q).group(0) + "..."
+            if re.search('([Ii][Ss]|[Ww][Aa][Ss])\s\w+\s\w+', q):
+                message += "<br>Determined that you're looking for information about " + re.search('\w+\s\w+', q).group(0) + "..."
             else:
                 message += "<br>Giving you information about the person who \"" + re.match('.*(?=\?)|.*', re.search('(?<=[Ww][Hh][Oo][\s]).*', q).group(0)).group(0) + "\""
                 text = questions.get_names(text)
