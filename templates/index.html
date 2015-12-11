@@ -7,7 +7,7 @@
 {% block contents %}
 
 <h1>GQ RegEx Search Engine</h1>
-<p><em>We do WHO questions.</em></p>
+<p><em>We do (some) WHO questions.</em></p>
 <form>
   <input type="text" name="search" {% if text %}value="{{ request.args.get('search').strip() }}"{% endif %} autofocus />
   <input type="submit" />
